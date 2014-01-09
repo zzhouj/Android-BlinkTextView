@@ -10,6 +10,7 @@ public class BlinkTextViewTestActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		super.onCreate(savedInstanceState);
+		setContentView(R.layout.blink_text_view_test);
 	}
 
 }
