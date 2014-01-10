@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 public class BlinkTextView extends TextView {
 	private static final String TAG = "BlinkTextView";
-	private static final boolean DEBUG = true;
+	private static final boolean DEBUG = false;
 
 	private static void DEBUG_LOG(String msg) {
 		if (DEBUG) {
