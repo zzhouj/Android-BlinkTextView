@@ -1,14 +1,14 @@
 Android-BlinkTextView
 =====================
 
-Android blink text view with it's text repeatly fade in & fade out
+Android blink text view with it's text repeatly fade in & fade out.
 
 Features
 ========
 
 + Android SDK **level 4+**.
-+ Text color repeatly fade in & fade out
-+ Options settings: fading duration, delay after fade in/out
++ Text color repeatly fade in & fade out.
++ Options settings: fading duration, delay after fade in/out.
 
 Snapshots
 =========
