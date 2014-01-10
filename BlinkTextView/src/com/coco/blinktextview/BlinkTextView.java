@@ -27,7 +27,7 @@ public class BlinkTextView extends TextView {
 
 	// blink
 	private ColorStateList mOriginalColors;
-	private int mTextColorAlpha;
+	private int mCurrentAlpha;
 
 	private Scroller mScroller;
 	private boolean mIsFadein;
@@ -59,7 +59,7 @@ public class BlinkTextView extends TextView {
 	private void initBlinkTextView() {
 		final Context context = getContext();
 		mScroller = new Scroller(context, new LinearInterpolator());
-		mTextColorAlpha = MAX_ALPHA;
+		mCurrentAlpha = MAX_ALPHA;
 	}
 
 	@Override
@@ -104,21 +104,21 @@ public class BlinkTextView extends TextView {
 	}
 
 	private void saveOriginalColor() {
-		mOriginalColors = getTextColors().withAlpha(mTextColorAlpha);
+		mOriginalColors = getTextColors().withAlpha(mCurrentAlpha);
 	}
 
 	private void startBlink() {
 		int sx;
 		int dx;
 		if (mIsFadein) {
-			sx = MIN_ALPHA;
-			dx = MAX_ALPHA;
+			sx = mCurrentAlpha;
+			dx = MAX_ALPHA - mCurrentAlpha;
 		} else {
-			sx = MAX_ALPHA;
-			dx = -MAX_ALPHA;
+			sx = mCurrentAlpha;
+			dx = -mCurrentAlpha;
 		}
 		mScroller.abortAnimation();
-		mScroller.startScroll(sx, 0, dx, 0, MAX_FADING_DURATION);
+		mScroller.startScroll(sx, 0, dx, 0, MAX_FADING_DURATION * Math.abs(dx) / MAX_ALPHA);
 		ViewCompat.postInvalidateOnAnimation(this);
 		mBlinkStarted = true;
 	}
@@ -136,9 +136,9 @@ public class BlinkTextView extends TextView {
 			return;
 		}
 		if (!mScroller.isFinished() && mScroller.computeScrollOffset()) {
-			mTextColorAlpha = Math.max(MIN_ALPHA, Math.min(MAX_ALPHA, Math.abs(mScroller.getCurrX())));
-			DEBUG_LOG("computeScroll mTextColorAlpha=" + mTextColorAlpha + " mIsFadein=" + mIsFadein);
-			super.setTextColor(mOriginalColors.withAlpha(mTextColorAlpha));
+			mCurrentAlpha = Math.max(MIN_ALPHA, Math.min(MAX_ALPHA, Math.abs(mScroller.getCurrX())));
+			DEBUG_LOG("computeScroll mCurrentAlpha=" + mCurrentAlpha);
+			super.setTextColor(mOriginalColors.withAlpha(mCurrentAlpha));
 
 			// Keep on drawing until the animation has finished.
 			ViewCompat.postInvalidateOnAnimation(this);
