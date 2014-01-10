@@ -18,75 +18,76 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal" >
+        android:orientation="vertical"
+        android:padding="15dp" >
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Fading duration: " />
+            android:orientation="horizontal" >
 
-        <TextView
-            android:id="@+id/fading_duration_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fading duration: " />
 
-    <SeekBar
-        android:id="@+id/fading_duration_seek"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:max="5000" />
+            <TextView
+                android:id="@+id/fading_duration_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal" >
-
-        <TextView
-            android:layout_width="wrap_content"
+        <SeekBar
+            android:id="@+id/fading_duration_seek"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Delay after fadein: " />
+            android:max="5000" />
 
-        <TextView
-            android:id="@+id/delay_after_fadein_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
-
-    <SeekBar
-        android:id="@+id/delay_after_fadein_seek"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:max="2000" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal" >
-
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Delay after fadeout: " />
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal" >
 
-        <TextView
-            android:id="@+id/delay_after_fadeout_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Delay after fadein: " />
+
+            <TextView
+                android:id="@+id/delay_after_fadein_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <SeekBar
+            android:id="@+id/delay_after_fadein_seek"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="2000" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Delay after fadeout: " />
+
+            <TextView
+                android:id="@+id/delay_after_fadeout_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <SeekBar
+            android:id="@+id/delay_after_fadeout_seek"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="2000" />
     </LinearLayout>
-
-    <SeekBar
-        android:id="@+id/delay_after_fadeout_seek"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:max="2000" />
 
 </LinearLayout>
