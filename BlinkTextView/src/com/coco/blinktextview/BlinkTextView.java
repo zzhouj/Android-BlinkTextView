@@ -146,8 +146,8 @@ public class BlinkTextView extends TextView {
 
 	@Override
 	protected void onDetachedFromWindow() {
-		super.onDetachedFromWindow();
 		stopBlink();
+		super.onDetachedFromWindow();
 	}
 
 	@Override
@@ -207,7 +207,9 @@ public class BlinkTextView extends TextView {
 
 	private void stopBlink() {
 		mScroller.abortAnimation();
-		getHandler().removeCallbacks(mReverseFadingRunnable);
+		if (getHandler() != null) {
+			getHandler().removeCallbacks(mReverseFadingRunnable);
+		}
 		mBlinkStarted = false;
 	}
 
