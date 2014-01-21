@@ -199,10 +199,13 @@ public class BlinkTextView extends TextView {
 			sx = mCurrentAlpha;
 			dx = -mCurrentAlpha;
 		}
+		final int duration = (int) (mFadingDuration * Math.abs(dx) / MAX_ALPHA);
+		DEBUG_LOG("startBlink mIsFadein=" + mIsFadein + ", mCurrentAlpha=" + mCurrentAlpha +
+				", sx=" + sx + ", dx=" + dx + ", duration=" + duration);
 		mScroller.abortAnimation();
-		mScroller.startScroll(sx, 0, dx, 0, (int) (mFadingDuration * Math.abs(dx) / MAX_ALPHA));
-		ViewCompat.postInvalidateOnAnimation(this);
+		mScroller.startScroll(sx, 0, dx, 0, duration);
 		mBlinkStarted = true;
+		ViewCompat.postInvalidateOnAnimation(this);
 	}
 
 	private void stopBlink() {
@@ -230,8 +233,8 @@ public class BlinkTextView extends TextView {
 		}
 
 		// Done with scroll, clean up state.
+		stopBlink();
 		final long delayMillis = mIsFadein ? mDelayAfterFadein : mDelayAfterFadeout;
-		getHandler().removeCallbacks(mReverseFadingRunnable);
 		getHandler().postDelayed(mReverseFadingRunnable, delayMillis);
 	}
 
