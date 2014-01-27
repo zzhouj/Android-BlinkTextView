@@ -96,6 +96,19 @@ public class BlinkTextView extends TextView {
 		mCurrentAlpha = MAX_ALPHA;
 	}
 
+	@Override
+	public void setEnabled(boolean enabled) {
+		if (enabled == isEnabled()) {
+			return;
+		}
+		super.setEnabled(enabled);
+		if (enabled) {
+			startBlink();
+		} else {
+			stopBlink();
+		}
+	}
+
 	public long getFadingDuration() {
 		return mFadingDuration;
 	}
@@ -190,6 +203,9 @@ public class BlinkTextView extends TextView {
 	}
 
 	private void startBlink() {
+		if (!isEnabled()) {
+			return;
+		}
 		int sx;
 		int dx;
 		if (mIsFadein) {
@@ -218,8 +234,7 @@ public class BlinkTextView extends TextView {
 
 	@Override
 	public void computeScroll() {
-		if (!mBlinkStarted) {
-			// blink stopped.
+		if (!isEnabled() || !mBlinkStarted) {
 			return;
 		}
 		if (!mScroller.isFinished() && mScroller.computeScrollOffset()) {
